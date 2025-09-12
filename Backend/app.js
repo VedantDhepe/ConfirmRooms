@@ -1,3 +1,4 @@
+
 if(process.env.NODE_ENV != "production"){
 require("dotenv").config();
 }
@@ -8,7 +9,7 @@ const app = express();
 app.use(bodyParser.json());
 app.use(
   cors({
-    origin: "http://localhost:5173", // React app URL
+    origin: process.env.FRONTEND_URL, // React app URL
     credentials: true, // allow cookies to be sent
   })
 );
@@ -32,10 +33,10 @@ const User = require("./models/user.js");
 
 
 
-const port = 8080;
+const port = process.env.PORT || 8080;
 
 
-// const mongo_URL = 'mongodb://127.0.0.1:27017/MakeMyDeal';
+
 const db_URL = process.env.ATLASDB_URL;
 main().then((req,res) => {console.log("Connected to DataBase Successfully")}).catch((err) => {console.log("Error in connecting to DataBase" + err)});
 async function main() {
@@ -57,6 +58,7 @@ const sessionOption = {
     saveUninitialized : true,
     cookie : {
         expires : Date.now() + 7 * 1000 * 60 * 60 * 24,
+        secure: process.env.NODE_ENV === "production",
         maxAge : 7 * 1000 * 60 * 60 * 24,
         httpOnly : true,
     }
@@ -69,32 +71,6 @@ passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
 
-// This middleware for flash shold be use before all routes since all the routes should be accessible for the flash messages
-//Also this requires sessions to be created already...
-//Response.locals
-// app.use((req,res,next) =>{
-//     res.locals.successMsg = req.flash("success");
-//     res.locals.errorMsg = req.flash("error");
-//     res.locals.currUser = req.user;
-//     next();
-//  })
-
-
-
-
-// app.get("/demouser", async (req,res) =>{
-//     let fakeUser = new User({
-//         email : "vedant@gmail.com",
-//         username : "Vedant Ujwala Hanumant Dhepe"
-//     });
-
-//     let registeredUser = await User.register(fakeUser, "This is password");
-//     res.send(registeredUser);
-// });
-
-// app.get("/login", (req,res) =>{
-//     res.render("login.ejs");
-// })
 
 
 app.use('/listing/:id/review', reviewRouter);
