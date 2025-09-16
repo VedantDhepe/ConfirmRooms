@@ -41,14 +41,14 @@ const Navbar = () => {
 
   return (
     <>
-      <nav className="rounded-2xl flex justify-between items-center bg-orange-400 text-black h-14 mb-2 p-4">
+      <nav className="rounded-b-lg flex justify-between items-center bg-orange-400 text-black h-14 mb-2 p-4">
       <div className="ml-4">MyApp</div>
       <div className="flex items-center gap-2">
         <NavLink
           to="/"
           className={({ isActive }) =>
             `rounded-lg p-2 mr-2 transition-colors duration-200 ${
-              isActive ? "bg-stone-50" : "hover:bg-gray-700"
+              isActive ? "bg-stone-50" : "hover:bg-gray-300"
             }`          }
         >
           Home
@@ -57,7 +57,7 @@ const Navbar = () => {
           to="/new"
           className={({ isActive }) =>
             `rounded-lg p-2 mr-2 px-3 transition-colors duration-200 ${
-              isActive ? "bg-stone-50" : "hover:bg-gray-700"
+              isActive ? "bg-stone-50" : "hover:bg-gray-300"
             }`
           }
         >
@@ -69,7 +69,7 @@ const Navbar = () => {
           to="/signup"
           className={({ isActive }) =>
             `rounded-lg p-2 mr-2 transition-colors duration-200 ${
-              isActive ? "bg-stone-50" : "hover:bg-gray-700"
+              isActive ? "bg-stone-50" : "hover:bg-gray-300"
             }`
           }
         >
@@ -82,7 +82,7 @@ const Navbar = () => {
           to="/login"
           className={({ isActive }) =>
             `rounded-lg p-2 mr-2 transition-colors duration-200 ${
-              isActive ? "bg-stone-50" : "hover:bg-gray-700"
+              isActive ? "bg-stone-50" : "hover:bg-gray-300"
             }`
           }
         >
@@ -93,11 +93,11 @@ const Navbar = () => {
 
         
         {
-          isLoggedIn && (
+            isLoggedIn && (
 
             <button
             onClick = {handleLogout}
-              className="rounded-lg p-2 m-2 bg-black hover:bg-gray-700 transition-all duration-300 "
+              className="rounded-lg p-2 m-2 hover:bg-gray-300 transition-all duration-300 "
               >
               Logout
             </button>
