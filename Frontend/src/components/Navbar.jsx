@@ -41,8 +41,8 @@ const Navbar = () => {
 
   return (
     <>
-      <nav className="rounded-b-lg flex justify-between items-center bg-orange-400 text-black h-14 mb-2 p-4">
-      <div className="ml-4">MyApp</div>
+      <nav className="rounded-b-lg flex justify-between items-center bg-orange-400 text-black h-14 mb-2">
+      <div className="ml-4"></div>
       <div className="flex items-center gap-2">
         <NavLink
           to="/"
